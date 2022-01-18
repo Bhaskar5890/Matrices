@@ -1,0 +1,48 @@
+public class Solution {
+    public int[][] DiagonalSort(int[][] mat) 
+    {
+        var m = mat.Length;   
+        var n = mat[0].Length;
+        var map = new Dictionary<int, List<int>>();
+        var diff = 0;
+        
+        //Create the dict of values by difference in indices
+        for(int i = 0; i < m ; i++)
+        {
+            for(int j = 0; j< n ; j++)
+            {
+                diff = i-j;
+                
+                if (!map.ContainsKey(diff))
+                {
+                  var list = new List<int>();
+                  list.Add(mat[i][j]);
+                  map.Add(diff, list);
+                }
+                else
+                {
+                  map[diff].Add(mat[i][j]);
+                }
+            }
+        }
+        
+        //Sort the values by diff in indices
+        foreach(var k in map)
+        {
+            k.Value.Sort();
+        }
+        
+        //Fill in the values back to dict after sorting
+        for(int i = 0; i < m ; i++)
+        {
+            for(int j = 0; j< n ; j++)
+            {
+                diff = i-j;
+                mat[i][j] = map[diff][0];
+                map[diff].RemoveAt(0);   
+            }
+        }
+        
+        return mat;
+    }
+}
