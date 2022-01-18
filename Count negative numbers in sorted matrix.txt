@@ -1,0 +1,22 @@
+public class Solution {
+    public int CountNegatives(int[][] grid) 
+    {
+        var count = 0;
+        var rowsLength = grid.Length -1;
+        var columnLength = grid[0].Length;
+        var c = 0;
+        while(rowsLength >= 0 && c <  columnLength)
+        {
+            if(grid[rowsLength][c] < 0)
+            {
+                rowsLength--;
+                count += columnLength - c;
+            }
+            else
+            {
+                c++;
+            }
+        }
+        return count;
+    }
+}
