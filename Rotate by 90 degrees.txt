@@ -1,0 +1,32 @@
+public class Solution {
+    public void Rotate(int[][] matrix) 
+    {
+        var mLength = matrix.Length;
+        //Transpose of matrix
+        for(int i = 0; i < mLength; i++)    
+        {
+            for(int j = i; j < matrix[i].Length; j++)    
+            {
+                if(i != j)
+                {
+                    var temp = matrix[i][j];
+                    matrix[i][j] = matrix[j][i];
+                    matrix[j][i] = temp;
+                }
+            }
+        }
+        
+        //Swap the columns
+        for(int i = 0; i < matrix.Length; i++)    
+        {
+            var length = matrix[i].Length;
+            for(int j = 0; j < length/2; j++)    
+            {
+                var temp = matrix[i][j];
+                matrix[i][j] = matrix[i][length-1-j];
+                matrix[i][length-1-j] = temp;
+            }
+        }
+
+    }
+}
