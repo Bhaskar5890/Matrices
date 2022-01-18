@@ -1,0 +1,25 @@
+public class Solution {
+    public int[][] Transpose(int[][] matrix) 
+    {
+        var row = matrix.Length;
+        var col = matrix[0].Length;
+        
+        //Creation of jagged array
+        var res = new int[col][];
+        for(int a = 0; a < col; a++)
+        {
+            res[a] = new int[row];
+        }
+        
+        //Transpose
+        for(int i = 0; i < row; i++)
+        {
+            for(int j = 0; j < col; j++)
+            {
+                res[j][i] = matrix[i][j];
+            }
+        }
+        
+        return res;
+    }
+}
