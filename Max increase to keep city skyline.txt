@@ -1,0 +1,40 @@
+public class Solution {
+    public int MaxIncreaseKeepingSkyline(int[][] grid) 
+    {
+        var rowMax = new int[grid.Length];
+        var colMax = new int[grid.Length];
+        
+        int rowM= Int32.MinValue;
+        int colM = Int32.MinValue;
+        int count = 0;
+        //var arr = new int[grid.Length,grid[0].Length];
+        for(int i = 0; i < grid.Length; i++)
+        {
+            rowM = Int32.MinValue;
+            colM = Int32.MinValue;
+            for(int j = 0; j < grid[i].Length; j++)
+            {
+                if(grid[i][j] > rowM)
+                {
+                    rowM = grid[i][j];
+                }
+                if(grid[j][i] > colM)
+                {
+                    colM = grid[j][i];
+                }
+            }
+            rowMax[i] = rowM;
+            colMax[i] = colM;
+        }
+        
+        for(int i = 0; i < grid.Length; i++)
+        {
+            for(int j = 0; j < grid[i].Length; j++)
+            {
+                count += Math.Abs(grid[i][j] - Math.Min(rowMax[i], colMax[j]));
+            }
+        }
+        
+        return count;
+    }
+}
