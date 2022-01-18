@@ -1,0 +1,34 @@
+public class Solution {
+    public bool SearchMatrix(int[][] matrix, int target) 
+    {
+        if(matrix.Length == 0)
+        {
+            return false;
+        }
+        
+        var rows = matrix.Length;
+        var cols = matrix[0].Length;
+        var i = 0;
+        var j = cols-1;
+        while(i < rows && j >= 0)
+        {
+            if(matrix[i][j] == target)
+            {
+                return true;
+            }
+            else
+            {
+                if(target > matrix[i][j])
+                {
+                    i++;
+                }
+                else
+                {
+                    j--;
+                }
+            }
+        }
+        
+        return false;
+    }
+}
